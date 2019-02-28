@@ -1,0 +1,22 @@
+(define (cym in)
+	(define pi 3.14159265358979323846)
+	(define (cyan)
+		(int (*(sin(+(/(* pi in) 200) (/ pi 2))) 255))
+		;sin(((pi * in) / 200) * (pi * 2)) * 255 
+	)
+	(define (yellow)
+		(int (* ( + (sin ( + (/ ( * pi in) 100 ) pi)) 1) 255))
+		
+	)
+	(define (magenta)
+	  	(int (* ( / (+(sin(+(/(* 3 pi in ) 200) (/ pi 2)))1)2)255))
+	)
+	(string+ (fmt "%02X" (cyan))(fmt "%02x" (yellow))(fmt "%02x"(yellow))(fmt "%02x" (magenta)))
+	(inspect (cyan))
+	(inspect (yellow))
+	(inspect (magenta))
+)
+
+(define (main)
+  	(inspect (cym 0))
+)
