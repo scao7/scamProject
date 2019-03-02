@@ -1,0 +1,18 @@
+;task5
+(define (curry f a)
+     (define (lambda b)
+             (define (lambda c)
+	                (define (lambda d)
+			              (f a b c d))))
+        )
+(define (main)
+;	(setPort (open (getElement ScamArgs 1) 'read))
+	(define arg (eval (readExpr) this))
+	(define arg1 (readExpr))
+	;(define arg2 (readExpr))
+	;(define arg3 (readExpr))
+	;(define arg4 (readExpr))
+	;(define (f a b c d) (+ a b c d))
+	(curry arg arg1)
+	
+  )
