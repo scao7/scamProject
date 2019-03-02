@@ -1,20 +1,21 @@
 (define r 0.0)
 (define s 0.0)
-(define (mandelbrot threshold)
-    
-    (if ( > (+ (* r r ) (* s s)) 4 ) ;if this always true diverge
-        (assign r (-( + (* r r ) (* s s) ) y))
-        (assign s (+ (* 2 r s) y))
-        (mandelbrot r)
-        (mandelbrot s)
-    )
-
-
-    (define (func x y)
-    
+(define n 0)
+(define (mandelbrot threshold)  
+    (define (testFunc x y)
+    	(define (iter x y n)
+   		(if (and ( > (+ (* r r ) (* s s)) 4 ) (< n  threshold))
+		   ;if this always true diverge
+       			(set! r (+( - (* r r ) (* s s) ) x))
+		        (set! s (+ (* 2 r s) y))
+			n
+			(iter x y (+ n 1))
+	 	)
+		(println "loop")
+   	 )
     )
 )
-
 (define (main)
-    (mandelbrot 5)
+    (inspect ((mandelbrot 100)3 9 ))
+    (inspect (<(+(* r r) (* s s) ) 4))
 )
