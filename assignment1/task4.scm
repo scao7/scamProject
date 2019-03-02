@@ -1,7 +1,15 @@
 ;task4
 ;print the line with the level value
+(define (pascal row col left right)
+  (cond((< row col) #f)
+    	;((or (= 0 col) (= row col)) 1)
+		((= col 0) left)
+		((= row col )right)
+	(else (+ (pascal (- row 1) col left right)
+		 (pascal(- row 1)(- col 1) left right )))))
+		 
 (define (crazyTriangle left right)
-  	(println left right)
+  	;(println left right)
 	(define a left)
 	(define b right)
 	(define (pascaltriangle n)
@@ -9,7 +17,7 @@
 		(define (for-iter1 i)
 			(set! a left)
 			(set! b right)
-			(set! c left ) 
+			;(set! c left ) 
 			(define (for-iter2 j)
 				(print " ")
 		  		(if( <= j (- n i 1))
@@ -19,17 +27,17 @@
 			(for-iter2 1)
 			(define (for-iter3 k)
 			;	(print c " " )
-				(print c " ")
-				(set! c ( /(* c (- i k))  (+ k 1)))
+				(print (pascal i k left right)  " ")
+				;(set! c ( /(* c (- i k))  (+ k 1)))
 			;	(set! b ( /(* b (- i k))  (+ k 1)))
 			
-	  			(if(<= k i)
+	  			(if(< k i)
 					(for-iter3 (+ k 1))
 			  	)
 	 	 	)
 			(for-iter3 0)
 			(println)
-			(if( < i n)
+			(if( < i (- n 1))
   				(for-iter1 (+ i 1))
 			)
 
@@ -38,6 +46,7 @@
 		(for-iter1 0)
 	)
 )
+
 
 (define (main)
 	(setPort(open (getElement ScamArgs 1) 'read))
