@@ -23,7 +23,7 @@
 	(println "(cyan " in ") is " cyan)
 	(println "(yellow " in ") is " yellow)
 	(println "(magenta " in ") is " magenta)
-	(println "(cym "  in ") is 0x" (hex cyan) (hex yellow) (hex magenta))
+	(println "(cym "  in ") is #" (hex cyan) (hex yellow) (hex magenta))
 )
 (define (main)
   	(setPort (open(getElement ScamArgs 1) 'read))
