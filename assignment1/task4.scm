@@ -9,12 +9,12 @@
 		(define (for-iter1 i)
 			(set! a left)
 			(set! b right)
-			(set! c left 
+			(set! c left ) 
 			(define (for-iter2 j)
 				(print " ")
 		  		(if( <= j (- n i 1))
 					(for-iter2 (+ j 1))
-				  
+				)  
 			  )
 			(for-iter2 1)
 			(define (for-iter3 k)
