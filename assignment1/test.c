@@ -1,22 +1,18 @@
 #include <stdio.h>
  
-void pascaltriangle(unsigned int n)
+#define D 8
+int pascals(int *x, int *y, int d)
 {
-	  unsigned int c, i, j, k;
-	   
-	    for(i=0; i < n; i++) {
-		        c = 1;
-			    for(j=1; j <= 2*(n-1-i); j++) printf(" ");
-			        for(k=0; k <= i; k++) {
-					      printf("%d ", c);
-					            c = c * (i-k)/(k+1);
-						        }
-				    printf("\n");
-				      }
+		int i;
+			for (i = 1; i < d; i++)
+						printf("%d%c", y[i] = x[i - 1] + x[i],
+											i < d - 1 ? ' ' : '\n');
+			 
+				return D > d ? pascals(y, x, d + 1) : 0;
 }
  
 int main()
 {
-	  pascaltriangle(5);
-	    return 0;
+		int x[D] = {0, 1, 0}, y[D] = {0};
+			return pascals(x, y, 0);
 }
