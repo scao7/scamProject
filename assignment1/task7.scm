@@ -3,21 +3,12 @@
 (define (double n) (+ n n))
 
 ; returns a number that is one half n
-(define (halve n)
-	(define r n)
-	(define x 2)
-	(define k 1)
-	(while (< (double x) r)
-		(set! x (double n))
-		(set! k (+ k k))
-	)
-	
-	k
+;(define (halve n)
   ;(define (iter subs total)
-   ; (if (>= total 2)
-    ;  (iter (+ subs 1) (- total 2))
-     ; subs
-     ; )
+    ;(if (>= total 2)
+      ;(iter (+ subs 1) (- total 2))
+      ;subs
+      ;)
     ;)
  ; (iter 0 n) 
 	;(define result n)
@@ -32,7 +23,25 @@
 ;	)
 ;	count
 	;(/ n 2)
-  )
+  ;)
+  
+  
+  (define (halve x)
+    (define (worker x c t)
+        (cond
+            ( (<= (- x c) 0)
+                t
+                )
+            ( (> (double (double c)) x)
+                (worker (- x (double c)) 1 (+ t c))
+                )
+            ( (< (double c) x)
+                (worker x (double c) t)
+                )
+            )
+        )
+        (worker x 1 0)
+    )
 
 (define (div2? n) (= (halve n) (halve (+ n 1))))
 
