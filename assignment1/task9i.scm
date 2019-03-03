@@ -14,5 +14,5 @@
 (define(main) 
 	(setPort (open (getElement ScamArgs 1) 'read))
 	(define arg (readExpr))
-	(println "(ramanujanr " arg ") is " (fmt "%.25f" (ramanujani arg)))
+	(println "(ramanujani " arg ") is " (fmt "%.25f" (ramanujani arg)))
 )
