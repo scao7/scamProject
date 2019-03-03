@@ -1,35 +1,37 @@
 (define (square n)
 	(* n n)
 )
-(define (w f n)
-	(define (iter i)
-	(cond 
-		((= i 0) (f i))
-		(else
-			( / 
-				( - (*(s f (+ i 1)) (s f (- i 1))) (square (s f i)) )
 
-				(+ (- (s f (+ i 1)) (* 2 (s f i))) ((s f (- i 1))))
-				
-			)
-		)
+(define (S f n)
+	(define i 0 )
+	(define sum 0.0)
+	(while (<= i n)
+		(set! sum (+ sum (f i)))	
+		(set! i (+ i 1))
 	)
-	(if ( <= i n)
-		(iter (+ i 1))
-	)
-	)
-	(iter 0)
+	sum
 )
 
-(define (s f n)
-	(define (iter i)
-		
-		(if(<= i n)
-			(iter (+ i 1))
+(define (w f n)
+	(define i 0)
+	(define result 0.0)
+	(define sum 0.0)
+	(define a)
+	(define b)
+	(define c)
+	(while (<= i n)
+		(cond 
+			((= i 0 )(set! result ( f i ) ))
+			(else 
+			(set! a (S f i))
+			(set! b (S f (- i 1)))
+			(set! c (S f (+ i 1)))
+			(set! result (/(-(* c b) (square a)) (+(- c (* 2 a)) b)))
+			)
 		)
-		(+ i (f i))
+		(set! i (+ i 1))
 	)
-	(iter 0)
+	result
 )
 
 (define (main)
@@ -37,9 +39,10 @@
 	(define arg (eval (readExpr) this))
 	(define arg1 (eval (readExpr) this))
 	
-	(inspect arg)
-	(inspect arg1)
-	(inspect ((s (lambda (x) (x))) 3))
-	(inspect (s arg arg1))
-	;(inspect (w arg arg1))
+	;(inspect arg)
+	;(inspect arg1)
+	;(inspect (S arg arg1))
+	;(inspect (W arg arg1))
+	(println "(S " arg " " arg1 ") is " (fmt "%.15f" (S arg arg1)))
+	(println "(w " arg " "arg1 ") is " (fmt "%.15f" (w arg arg1)))
 )
