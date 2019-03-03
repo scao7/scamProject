@@ -27,6 +27,10 @@ task6:
 task7:
 	echo "1960 56" > task7.args
 	scam -r task7.scm task7.args
+
+task8i:
+	echo "0" > task8.args
+	scam -r task8i.scm task8.args
 task8r:
 	echo "0" > task8.args
 	scam -r task8r.scm task8.args
