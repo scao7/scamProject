@@ -1,21 +1,21 @@
 ;re 8
 (define (ecfr n)
-  (define (helper depth)                ; h(depth) =
-    (if (<= depth n)                    ; (if depth <= the depth we want)
-      (/ 1                              ;               1
-        (+ 1                            ; ---------------------------------
-          (/ 1                          ; 1 +              1
-            (+ (* 2 depth)              ;     -----------------------------
-              (/ 1                      ;     (depth * 2) +        1
-                (+ 1                    ;                  ----------------
-                  (helper (+ depth 1))  ;                  1 + h(depth + 1)
+  (define (helper depth)               
+    (if (<= depth n)                    
+      (/ 1                             
+        (+ 1                           
+          (/ 1                          
+            (+ (* 2 depth)             
+              (/ 1                     
+                (+ 1                   
+                  (helper (+ depth 1))  
                   )
                 )
               )
             )
           )
         )
-      0                               ; or 0 if we've hit the max depth needed
+      0                               
       )
     )
 	(cond 
@@ -31,3 +31,12 @@
 	(define arg (readExpr))
 	(println "(ecfr " arg ") is " (fmt "%.25f" (ecfr arg)) ")")
 )
+
+;               1
+; ---------------------------------
+; 1 +              1
+;     -----------------------------
+;     (depth * 2) +        1
+;                  ----------------
+;                  1 + h(depth + 1)
+       
