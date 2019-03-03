@@ -1,4 +1,3 @@
-
 (define hexConvert "0123456789ABCDEF")
 (define (hex function)
 	(string+ (getElement hexConvert (int (/ function 16))) 
