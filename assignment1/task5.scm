@@ -19,6 +19,6 @@
 	;(inspect arg3)
 	;(inspect arg4)
 	;(inspect(((((curry arg)arg1)arg2)arg3)arg4))
-	(println "(((((curry " arg ") " arg1 ") " arg2 ") " arg3 ") " arg4 ")" )
+	(println "(((((curry " arg ") " arg1 ") " arg2 ") " arg3 ") " arg4 ") is " (((((curry arg)arg1)arg2)arg3)arg4) )
 	
   )
