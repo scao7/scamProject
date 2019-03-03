@@ -15,7 +15,7 @@ task4:
 	echo "1 1 5" > task4.args
 	scam -r task4.scm task4.args
 task5:
-	echo "(define (f a b c d) (+ a b c d )" > task5.args
+	echo "(define (f a b c d) (+ a b c d ))" > task5.args
 	echo "1 2 3 4" >> task5.args
 	scam -r task5.scm task5.args
 
