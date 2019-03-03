@@ -35,6 +35,6 @@
   (define arg (readExpr))
   (define arg1 (readExpr))
   (define arg2 (readExpr))
-  (println "((mandelbrot " arg ") " arg1 arg2 ")) is " ((mandelbrot arg) arg1 arg2)) 
+  (println "((mandelbrot " arg ") " arg1 " " arg2 ") is " ((mandelbrot arg) arg1 arg2)) 
   ;(inspect ((mandelbrot arg) arg1 arg2))
   )
