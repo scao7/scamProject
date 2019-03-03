@@ -22,5 +22,7 @@
 (define (main)
 	(setPort (open (getElement ScamArgs 1) 'read))
 	(define arg (readExpr))
-	(println "(ecfi " arg ") is " (fmt "%.25f" (ecfi arg)))
+	(println "(ecfi " arg ") is " (fmt "%.25f" (ecfi arg)) ")" )
+	
+	;change for test case 
 ) 
