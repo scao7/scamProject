@@ -1,17 +1,24 @@
-(define (w f i)
+(define (square n)
+	(* n n)
+)
+(define (w f n)
 	(define (iter i)
 	(cond 
 		((= i 0) (f i))
 		(else
 			( / 
-				( - (*(s f (+ i 1)) (s f (- i 1))) (sqrt (s f i)) )
+				( - (*(s f (+ i 1)) (s f (- i 1))) (square (s f i)) )
 
 				(+ (- (s f (+ i 1)) (* 2 (s f i))) ((s f (- i 1))))
 				
 			)
 		)
 	)
+	(if ( <= i n)
+		(iter (+ i 1))
 	)
+	)
+	(iter 0)
 )
 
 (define (s f n)
@@ -32,5 +39,7 @@
 	
 	(inspect arg)
 	(inspect arg1)
+	(inspect ((s (lambda (x) (x))) 3))
 	(inspect (s arg arg1))
+	;(inspect (w arg arg1))
 )
