@@ -55,5 +55,6 @@
 	(define arg1 (readExpr))
 	(define arg2 (readExpr))
 	(define arg3 (readExpr))
+	(println "((crazyTriangle " arg1 " " arg2 ") " arg3 ")")
 	((crazyTriangle arg1 arg2 ) arg3)
   )
