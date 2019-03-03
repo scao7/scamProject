@@ -35,8 +35,8 @@ task8r:
 	echo "0" > task8.args
 	scam -r task8r.scm task8.args
 task9r:
-	echo "0" > task9r.args
+	echo "10" > task9r.args
 	scam -r task9r.scm task9r.args
 task9i:
-	echo "0" > task9i.args
+	echo "10" > task9i.args
 	scam -r task9i.scm task9i.args
