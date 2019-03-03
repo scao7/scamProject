@@ -16,19 +16,19 @@
 (define (div2? n) (= (halve n) (halve (+ n 1))))
 
 (define (ethiop x y)
-  (define (iter total a b)  ; define the iterator function
-    (if (>= b 1)              ; if b isn't 1
-      (iter                   ; iterate to the next step and:
-        (+ total              ;   add a to our total if b isn't even
-          (if (div2? b) 0 a)  ;   otherwise, just add 0
-          )                   ;
-        (double a)            ;   double a
-        (halve b)             ;   halve b
+  (define (iter total a b) 
+    (if (>= b 1)              
+      (iter                   
+        (+ total            
+          (if (div2? b) 0 a) 
+          )                   
+        (double a)           
+        (halve b)             
         )
-      total ; if b < 1, return the total we've accrued. this is the answer
+      total ;
       )
     )
-    ; call the base iterator with no total, x and y as starting a and b
+ 
     (iter 0 x y)
   )
 
@@ -40,4 +40,5 @@
 (println "(double " arg1 ") is " (double arg1))
 (println "(div2? " arg1 ") is " (div2? arg1))
 (println "(ethiop " arg1 " " arg2 ") is " (ethiop arg1 arg2))
-  )
+(println)
+)
