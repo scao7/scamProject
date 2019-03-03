@@ -1,17 +1,19 @@
-(define (ecfi n)
-	(define L  1)
-	(define (iter i)
-	
-		(if (<= i n)
-			(set! L (+ L (iter (+ i 1))))
-		)
-		L
+
+(define (ecfi height)
+	(define e 2.0)
+	(define e0)
+	(define fact 1.0)
+	(define n 2)
+	(define i 0)
+	(while (< i height)
+		(set! e0 e)
+		(set! fact (+ 1 1) )
+		(set! e (+ e (/ 1 fact) ))
+		(set! i (+ i 1))
 	)
-	(iter 0)
-
-
+	e
 )
 
 (define (main)
-	(inspect (ecfi 10));
-)
+	(inspect (ecfi 1))
+) 
