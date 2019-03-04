@@ -16,6 +16,7 @@
 	(define yellow
 		(int(* ( + (sin ( + (/ ( * pi in) 100 ) pi)) 1) 255))
 	)
+
 	(define magenta
 	  	(int (* ( / (+(sin(+(/(* 3 pi in ) 200) (/ pi 2)))1)2)255))
 	)
