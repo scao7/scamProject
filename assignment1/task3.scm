@@ -1,6 +1,6 @@
 (define (root-n degree)
   (define(rootNum number)
-  (define tolerance 0.000000000001)
+  (define tolerance 0.0000000000000001)
   (define(good-enough? next guess)
     (< (abs(- next guess)) tolerance)
     )
