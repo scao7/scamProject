@@ -3,45 +3,35 @@
 (define (double n) (+ n n))
 
 ; returns a number that is one half n
-;(define (halve n)
-  ;(define (iter subs total)
-    ;(if (>= total 2)
-      ;(iter (+ subs 1) (- total 2))
-      ;subs
-      ;)
-    ;)
- ; (iter 0 n) 
-	;(define result n)
-	;(define count 0)
-	;(define (iter result)
-		
-;		(set! result(- result 2))
-		;(set! count (+ count 1))
-		;(if (>= result 2)
-	;		(iter result)
-;		)
-;	)
-;	count
-	;(/ n 2)
-  ;)
+(define (halve n)
+	(define (iter i) 
+	  	;(set! i (+ i i))
+		i
+		(if (< (+ i i) n)
+			(iter (+ i i))
+			i
+		  )
+	 )
+	(iter 1)
+  )
   
   
-  (define (halve x)
-    (define (worker x c t)
-        (cond
-            ( (<= (- x c) 0)
-                t
-                )
-            ( (> (double (double c)) x)
-                (worker (- x (double c)) 1 (+ t c))
-                )
-            ( (< (double c) x)
-                (worker x (double c) t)
-                )
-            )
-        )
-        (worker x 1 0)
-    )
+ ; (define (halve x)
+  ;  (define (worker x c t)
+   ;     (cond
+    ;        ( (<= (- x c) 0)
+     ;           t
+      ;          )
+       ;     ( (> (double (double c)) x)
+        ;        (worker (- x (double c)) 1 (+ t c))
+         ;       )
+          ;  ( (< (double c) x)
+           ;     (worker x (double c) t)
+           ;     )
+           ; )
+       ; )
+      ;  (worker x 1 0)
+   ; )
 
 (define (div2? n) (= (halve n) (halve (+ n 1))))
 
@@ -83,6 +73,7 @@
 (setPort (open (getElement ScamArgs 1) 'read))
 (define arg1 (readExpr))
 (define arg2 (readExpr))
+(inspect (halve 10))
 (println "(halve " arg1 ") is " (halve arg1))
 (println "(double " arg1 ") is " (double arg1))
 (println "(div2? " arg1 ") is " (div2? arg1))
