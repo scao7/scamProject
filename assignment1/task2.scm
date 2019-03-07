@@ -3,19 +3,19 @@
     (define (iter r s t)
       (if (= t threshold) 
         0
-        (if (< 2 (sqrt (+ (* r r) (* s s))))
+        (if (< 4 (+ (* r r) (* s s)))
           t
           (iter 
             (+ x (- (* r r) (* s s)))
             (+ y (* r s 2))
             (+ 1 t)
-            )
-          )
-        )
-      )
+		  )
+		)
+	  )
+	)
     (iter 0.0 0.0 0)
-    )
   )
+)
 
 (define (main)
   (setPort (open (getElement ScamArgs 1) 'read))
