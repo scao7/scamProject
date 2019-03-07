@@ -6,8 +6,8 @@
 	(define i 0 )
 	(define sum 0.0)
 	(while (<= i n)
-		(set! sum (+ sum (f i)))	
-		(set! i (+ i 1))
+		(define sum (+ sum (f i)))	
+		(define i (+ i 1))
 	)
 	sum
 )
@@ -21,15 +21,15 @@
 	(define c)
 	(while (<= i n)
 		(cond 
-			((= i 0 )(set! result ( f i ) ))
+			((= i 0 )(define result ( f i ) ))
 			(else 
-			(set! a (S f i))
-			(set! b (S f (- i 1)))
-			(set! c (S f (+ i 1)))
-			(set! result (/(-(* c b) (square a)) (+(- c (* 2 a)) b)))
+			(define a (S f i))
+			(define b (S f (- i 1)))
+			(define c (S f (+ i 1)))
+			(define result (/(-(* c b) (square a)) (+(- c (* 2 a)) b)))
 			)
 		)
-		(set! i (+ i 1))
+		(define i (+ i 1))
 	)
 	result
 )
