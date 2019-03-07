@@ -4,7 +4,7 @@ task1:
 	echo "0" > task1.args
 	scam -r task1.scm task1.args
 task2:
-	echo "100 0.5 0.5" > task2.args
+	echo "100 0.79 0.79" > task2.args
 	scam -r task2.scm task2.args
 
 task3:
@@ -21,7 +21,7 @@ task5:
 
 task6:
 	echo "(lambda (x) (/ (if (= (% x 2) 0 ) 1.0 -1.0 ) ( + x 1)))" > task6.args
-	echo "0" >> task6.args 
+	echo "2" >> task6.args 
 	scam -r task6.scm task6.args
 
 task7:
@@ -29,10 +29,10 @@ task7:
 	scam -r task7.scm task7.args
 
 task8i:
-	echo "0" > task8.args
+	echo "4" > task8.args
 	scam -r task8i.scm task8.args
 task8r:
-	echo "0" > task8.args
+	echo "4" > task8.args
 	scam -r task8r.scm task8.args
 task9r:
 	echo "10" > task9r.args
