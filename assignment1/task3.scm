@@ -6,7 +6,7 @@
     )
   (define (improve guess)
     (/ (+ (* (- degree 1) guess) (/ number (expt guess (- degree 1)))) degree)
-    )
+  )
   (define (root-iter guess)
     (let ((next (improve guess)))
       (if (good-enough? next guess)
