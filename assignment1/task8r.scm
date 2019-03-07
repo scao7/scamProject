@@ -2,22 +2,10 @@
 (define (ecfr n)
   (define (helper depth)               
     (if (<= depth n)                    
-      (/ 1                             
-        (+ 1                           
-          (/ 1                          
-            (+ (* 2 depth)             
-              (/ 1                     
-                (+ 1                   
-                  (helper (+ depth 1))  
-                  )
-                )
-              )
-            )
-          )
-        )
+      (/ 1 (+ 1  (/ 1 (+ (* 2 depth) (/ 1 (+ 1 (helper (+ depth 1 ))))))))
       0                               
-      )
     )
+  )
 	(cond 
 		(( = n 0) 2.0)
 		(else 
@@ -29,14 +17,5 @@
 (define (main)
   	(setPort (open (getElement ScamArgs 1) 'read))
 	(define arg (readExpr))
-	(println "(ecfr " arg ") is " (fmt "%.25f" (ecfr arg)) ")")
+	(println "(ecfr " arg ") is " (fmt "%.25f" (ecfr arg)))
 )
-
-;               1
-; ---------------------------------
-; 1 +              1
-;     -----------------------------
-;     (depth * 2) +        1
-;                  ----------------
-;                  1 + h(depth + 1)
-       
