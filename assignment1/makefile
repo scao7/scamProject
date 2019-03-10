@@ -1,7 +1,7 @@
 all: 
 	scam -r author.scm
 task1:
-	echo "0" > task1.args
+	echo "52" > task1.args
 	scam -r task1.scm task1.args
 task2:
 	echo "100 0.79 0.79" > task2.args
@@ -21,18 +21,18 @@ task5:
 
 task6:
 	echo "(lambda (x) (/ (if (= (% x 2) 0) 1 -1) (+ x 1.0)))" > task6.args
-	echo "1942" >> task6.args 
+	echo "1193" >> task6.args 
 	scam -r task6.scm task6.args
 
 task7:
-	echo "53 45" > task7.args
-	scam -r  -P 1 task7.scm task7.args
+	echo "12727 11080" > task7.args
+	scam -r task7.scm task7.args
 
 task8i:
-	echo "4" > task8.args
+	echo "2" > task8.args
 	scam -r task8i.scm task8.args
 task8r:
-	echo "4" > task8.args
+	echo "1" > task8.args
 	scam -r task8r.scm task8.args
 task9r:
 	echo "0" > task9r.args
