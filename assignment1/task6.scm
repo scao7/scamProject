@@ -13,25 +13,16 @@
 )
 
 (define (w f n)
-	(define i 0)
-	(define result 0.0)
-	(define sum 0.0)
-	(define a)
-	(define b)
-	(define c)
 	(define i n)
-	;(while (<= i n)
-		(cond 
-			((= i 0 )(set! result ( f i ) ))
-			(else 
-			(define a (S f i))
-			(define b (S f (- i 1)))
-			(define c (S f (+ i 1)))
-			(define result (/(-(* c b) (square a)) (+(- c (* 2 a)) b)))
-			)
+	(cond 
+		((= i 0 )(define result ( f i ) ))
+		(else 
+		(define a (S f i))
+		(define b (S f (- i 1)))
+		(define c (S f (+ i 1)))
+		(define result (/(-(* c b) (square a)) (+(- c (* 2 a)) b)))
 		)
-		;(set! i (+ i 1))
-	;)
+	)
 	result
 )
 
