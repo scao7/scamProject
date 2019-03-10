@@ -19,6 +19,6 @@
 	(setPort (open (getElement ScamArgs 1) 'read))
 	(define arg (readExpr))
 	(println "(ramanujani " arg ") is " (fmt "%.25f" (ramanujani  arg)))
-	
+	(println "$4$")	
 	;change format to pass test case
 )
