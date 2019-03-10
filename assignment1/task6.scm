@@ -6,8 +6,8 @@
 	(define i 0 )
 	(define sum 0.0)
 	(while (<= i n)
-		(define sum (+ sum (f i)))	
-		(define i (+ i 1))
+		(set! sum (+ sum (f i)))	
+		(set! i (+ i 1))
 	)
 	sum
 )
@@ -19,9 +19,10 @@
 	(define a)
 	(define b)
 	(define c)
-	(while (<= i n)
+	(define i n)
+	;(while (<= i n)
 		(cond 
-			((= i 0 )(define result ( f i ) ))
+			((= i 0 )(set! result ( f i ) ))
 			(else 
 			(define a (S f i))
 			(define b (S f (- i 1)))
@@ -29,20 +30,16 @@
 			(define result (/(-(* c b) (square a)) (+(- c (* 2 a)) b)))
 			)
 		)
-		(define i (+ i 1))
-	)
+		;(set! i (+ i 1))
+	;)
 	result
 )
 
 (define (main)
 	(setPort (open (getElement ScamArgs 1) 'read))
 	(define arg (eval (readExpr) this))
-	(define arg1 (eval (readExpr) this))
+	(define arg1 (readExpr))
 	
-	;(inspect arg)
-	;(inspect arg1)
-	;(inspect (S arg arg1))
-	;(inspect (W arg arg1))
 	(println "(S " arg " " arg1 ") is " (fmt "%.15f" (S arg arg1)))
 	(println "(w " arg " "arg1 ") is " (fmt "%.15f" (w arg arg1)))
 )
