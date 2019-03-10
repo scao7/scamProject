@@ -20,13 +20,13 @@ task5:
 	scam -r task5.scm task5.args
 
 task6:
-	echo "(lambda (x) (/ (if (= (% x 2) 0 ) 1.0 -1.0 ) ( + x 1)))" > task6.args
-	echo "2" >> task6.args 
+	echo "(lambda (x) (/ (if (= (% x 2) 0) 1 -1) (+ x 1.0)))" > task6.args
+	echo "1942" >> task6.args 
 	scam -r task6.scm task6.args
 
 task7:
-	echo "1960 56" > task7.args
-	scam -r task7.scm task7.args
+	echo "53 45" > task7.args
+	scam -r  -P 1 task7.scm task7.args
 
 task8i:
 	echo "4" > task8.args
@@ -35,8 +35,8 @@ task8r:
 	echo "4" > task8.args
 	scam -r task8r.scm task8.args
 task9r:
-	echo "10" > task9r.args
+	echo "0" > task9r.args
 	scam -r task9r.scm task9r.args
 task9i:
-	echo "10" > task9i.args
+	echo "0" > task9i.args
 	scam -r task9i.scm task9i.args
