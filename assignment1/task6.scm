@@ -4,12 +4,14 @@
 
 (define (S f n)
 	(define i 0 )
-	(define sum 0.0)
-	(while (<= i n)
-		(set! sum (+ sum (f i)))	
-		(set! i (+ i 1))
+	;(define sum 0.0)
+	(define (iter sum i)
+		(if(<= i n)
+			(iter (+ sum (f i)) (+ i 1))
+			sum
+		)
 	)
-	sum
+	(iter (f i) (+ i 1))
 )
 
 (define (w f n)
