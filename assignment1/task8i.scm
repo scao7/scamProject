@@ -7,16 +7,6 @@
 	(define (iter fact i)
 		fact
 		(if(< i height)
-		;(define fact )
-		;(define fact )
-		;(define fact )
-		;(define fact )
-		;(define fact )
-		;(define fact )
-		;(set! fact (+ fact 1))
-		;(set! e (+ e (/ 1 fact) ))
-		;(define i (+ i 1))
-		;fact
 		(iter (/ 1 (+ ( / 1 (+ (/ 1 (+ 1 fact)) (* (- height i) 2.0))) 1)) (+ i 1))
 		(+ e fact)
 		)
