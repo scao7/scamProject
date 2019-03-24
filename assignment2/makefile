@@ -6,3 +6,5 @@ task2: task2.scm
 	scam -r task2.scm task2.args
 task3: task3.scm
 	scam -r task3.scm task3.args	
+task4: task4.scm
+	scam -r task4.scm task4.args
