@@ -1,0 +1,1 @@
+(let*->lambdas `(define (f x) (let* ((y 2) (z y)) (+ x y z))))
