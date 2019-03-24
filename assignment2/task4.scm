@@ -1,6 +1,6 @@
 (define (let*->lambdas sourceCode)
     ;(inspect sourceCode)
-    (println sourceCode)
+   ; (println sourceCode)
 
     (define (define? code)
         ;(inspect code)

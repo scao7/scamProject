@@ -14,10 +14,11 @@
 )
 
 (define (main)
-  (define (f x y z) (+ x y z))
-    (define a 1)
-    (define b 2)
-    (define c 3)
+        (setPort (open (getElement ScamArgs 1) 'read))
+        (define env this)
+    (define (iter expr)
+         (if (not (eof?)) (begin (eval expr env) (iter (readExpr))))
+         )
+    (iter (readExpr))
+  )
 
-    
-)
