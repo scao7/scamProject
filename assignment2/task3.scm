@@ -1,6 +1,7 @@
 (define (Stack)
     (cons nil 0)
 )
+
 (define (ssize stack)
     (cdr stack)
 )
@@ -37,4 +38,3 @@
          )
     (iter (readExpr))
  )
-

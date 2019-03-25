@@ -1,21 +1,21 @@
-(define (range start end step) 	
+(define (range start end step)
   (list start)
     (if (< (+ start step) end) (cons start (range (+ start step) end step))
       (list start)
  	)
   )
-  
-(define (for-loop arglist procedure)
+
+(define (for-loop arguments function)
   (cond
-    ((null? arglist) nil)
-    (else 
+    ((null? arguments) nil)
+    (else
 	(begin
-      (procedure (car arglist))
-      (for-loop (cdr arglist) procedure)
+      (function (car arguments))
+      (for-loop (cdr arguments) function)
       ))
     )
   )
-  
+
 (define (main)
 	(setPort (open (getElement ScamArgs 1) 'read))
 	(define env this)
