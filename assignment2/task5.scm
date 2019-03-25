@@ -6,16 +6,30 @@
         )
 )
 
-(list "zero" "one")
+(define zero (lambda (f) (lambda (x) x)))
+(define (add-1 n) (lambda (f) (lambda (x) (f ((n f) x)))))
+
 (define (create num)
-  
+	(define (help church i)
+		;(inspect church)
+		;(inspect i)
+		(if (< i num)
+			(help (add-1 church) (+ i 1))
+			church
+		)
+	)
+	(help zero 0)
+	
 )
+
 (define (main)
+        (setPort (open (getElement ScamArgs 1) 'read))
+        (define env this)
+    (define (iter expr)
+         (if (not (eof?)) (begin (eval expr env) (iter (readExpr))))
+         )
+    (iter (readExpr))
 
-  (define five (lambda (f) (lambda (x) (f (f (f (f (f x))))))))
-  (define four (pred five))
 
-  (println ((four (lambda (x) (+ x 1))) 0))
-  ;(println (((create 4) (lambda (x) (+ x 1))) 0))
-;(println (((pred (create 4)) (lambda (x) (+ x 1))) 0))
-)
+  )
+

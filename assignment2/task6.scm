@@ -1,9 +1,9 @@
-(define (F e T)
+(define (s e t)
   (map
     (lambda (X)
       (cons e X)
       )
-    T
+    t
     )
   )
 
@@ -11,10 +11,10 @@
   (cond
     ((null? S) '(()) )
     (else 
-      (let ( (T (powerSet (cdr S))) (e (car S)) )
+      (let ( (t (powerSet (cdr S))) (e (car S)) )
         (merge
-          T
-          (F e T)
+          t
+          (s e t)
           )
         )
       )
