@@ -1,0 +1,6 @@
+(define (curry f)
+	((lambda (x)(+ x x ))2)
+)
+(define (main)
+	(inspect (curry 2))
+)

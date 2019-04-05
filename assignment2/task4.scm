@@ -1,39 +1,26 @@
-(define (let*->lambdas sourceCode)
-    ;(inspect sourceCode)
-   ; (println sourceCode)
-
-    (define (define? code)
-        ;(inspect code)
-        (if (and (list? code) (eq? (car code) 'define))
-            #t
-            #f
-        )
-    )
-
-    ;buildLambda helper function
-    (define (buildLambda code)
-        (cond 
-            ((define? (car code)) 
-                (define formalParam (cadr (car code)))
-                (define callExpr (caddr (car code)))
-                (list (append (list (cons 'lambda (cons (list formalParam) (buildLambda (cdr code))))) (list callExpr)))
+(define (let*->lambdas orig)
+    (define (noLocalsIt func args cur)
+        (if (and (list? (car cur)) (== (car (car cur)) 'define))
+            (if (== (length func) 0)
+                (if (== (length args) 0)
+                    (noLocalsIt (list (cadr (car cur))) (list (caddr (car cur))) (cdr cur))
+                    (noLocalsIt (list (cadr (car cur))) (append args (list (caddr (car cur)))) (cdr cur))
+                    )
+                )
+            (append (list (list 'lambda func (car cur))) args)
             )
-            (else
-                 code)
-        )
     )
-
-    (append (append (list (car sourceCode)) (list (cadr sourceCode))) (list (car (buildLambda (cddr sourceCode)))))
+    (list (car orig) (cadr orig) (noLocalsIt '() '() (cddr orig)))
 )
-
 (define (main)
-	(setPort (open (getElement ScamArgs 1) 'read))
-	(define env this)
-    	(define (iter expr)
-         (if (not (eof?)) (begin (eval expr env) (iter (readExpr))))
-         )
-    (iter (readExpr))	
+;(define sd '(define (f x) (define y 2) (+ x y)))
+;(inspect (no-locals sd))
+;(setNilDisplay 'nil)
+    (setPort (open (getElement ScamArgs 1) 'read))
+         (define env this)
+    (define (iter expr)
+       (if (not (eof?)) (begin (eval expr env) (iter (readExpr))))
+        )
+   (iter (readExpr))
+
 )
-
-
-

@@ -1,0 +1,8 @@
+(define (pval @)
+  (let ((outer @))
+    (lambda (@)(apply (car outer) (append (cdr outer) @)))
+    )
+  )
+(define (main)
+	(inspect ((pval + 1) ))
+)
