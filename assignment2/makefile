@@ -35,10 +35,6 @@ testall: test1 test2 \
 	test37 \
 	test38 \
 	test39 \
-	test40 \
-	test41 \
-	test42 \
-	test43 \
 	test45 \
 	test46 \
 	test47 \
@@ -47,8 +43,6 @@ testall: test1 test2 \
 	test50 \
 	test51 \
 	test52 \
-	test53 \
-	test54 \
 	test56 \
 	test57 \
 	test58 \
@@ -84,24 +78,6 @@ testall: test1 test2 \
 	test91 \
 	test92 \
 	test93 \
-	test94 \
-	test95 \
-	test96 \
-	test97 \
-	test98 \
-	test99 \
-	test100 \
-	test101 \
-	test102 \
-	test103 \
-	test104 \
-	test105 \
-	test106 \
-	test107 \
-	test108 \
-	test109 \
-	test110 \
-	test111
 
 
 test1: task1.scm testcase/task1.0
@@ -338,30 +314,6 @@ test39: task4.scm testcase/task4.5
 	diff result testcase/task4.5.expected
 	@echo ""
 
-test40: task4.scm testcase/task4.6
-	@echo "TEST #40"
-	$(SCAM) -r task4.scm testcase/task4.6 > result
-	diff result testcase/task4.6.expected
-	@echo ""
-
-test41: task4.scm testcase/task4.7
-	@echo "TEST #41"
-	$(SCAM) -r task4.scm testcase/task4.7 > result
-	diff result testcase/task4.7.expected
-	@echo ""
-
-test42: task4.scm testcase/task4.8
-	@echo "TEST #42"
-	$(SCAM) -r task4.scm testcase/task4.8 > result
-	diff result testcase/task4.8.expected
-	@echo ""
-
-test43: task4.scm testcase/task4.9
-	@echo "TEST #43"
-	$(SCAM) -r task4.scm testcase/task4.9 > result
-	diff result testcase/task4.9.expected
-	@echo ""
-
 #test44: task4.scm testcase/task4.10
 #	@echo "TEST #44"
 #	$(SCAM) -r task4.scm testcase/task4.10 > result
@@ -416,17 +368,6 @@ test52: task5.scm testcase/task5.7
 	diff result testcase/task5.7.expected
 	@echo ""
 
-test53: task5.scm testcase/task5.8
-	@echo "TEST #53"
-	$(SCAM) -r task5.scm testcase/task5.8 > result
-	diff result testcase/task5.8.expected
-	@echo ""
-
-test54: task5.scm testcase/task5.9
-	@echo "TEST #54"
-	$(SCAM) -r task5.scm testcase/task5.9 > result
-	diff result testcase/task5.9.expected
-	@echo ""
 
 #test55: task5.scm testcase/task5.10
 #	@echo "TEST #55" 
