@@ -1,35 +1,46 @@
+(define (quote? item)
+	(if(eq? item 'quote) #t #f)
+)
 
-(define (replace function old new)
-    (define (replaceHelp code)
-        (cond
-            ((null? code) (list))
-            ((and (atom? code) (eq? code old)) new)
-            ((atom? code) code)
-            ((or (eq? (car code) 'set!) (eq? (car code) 'set-car!) (eq? (car code) 'set-cdr!)) ;(set! + blah)
-                (list (car code) (cadr code) (car (replaceHelp (cddr code))))
+(define (replace func items)
+    (define (check obj lst)
+        (if (null? (cddr lst))
+            (if (eq? (car lst) obj)
+                (cadr lst)
+                obj
             )
-            (else
-                (cons 
-                    (if (builtin? (car code))
-                        (car code)
-                        (replaceHelp (car code))
-                    )
-                    (replaceHelp (cdr code)))
+            (if (eq? (car lst) obj)
+                (cadr lst)
+                (check obj (cddr lst))
             )
         )
     )
 
-    (define body (get 'code function))
-    (set 'code (replaceHelp body) function)
-    function
+    (define (iter stuff)
+        (cond
+            ((null? stuff) stuff)
+            ((object? (car stuff)) stuff)
+	    ((quote? (car stuff))
+		(set-car! stuff (check (car stuff) items)))
+	    ((pair? (car stuff))
+                (iter (car stuff))
+                (iter (cdr stuff)))
+            (else
+                (set-car! stuff (check (car stuff) items))
+                (iter (cdr stuff))
+                )
+            )
+    ) 
+
+    (iter (get 'parameters func))
+    (iter (cadr (get 'code func)))
 )
 
-	
 (define (main)
-        (setPort (open (getElement ScamArgs 1) 'read))
-        (define env this)
+    (define env this)
     (define (iter expr)
          (if (not (eof?)) (begin (eval expr env) (iter (readExpr))))
          )
+    (setPort (open (getElement ScamArgs 1) 'read))
     (iter (readExpr))
 )

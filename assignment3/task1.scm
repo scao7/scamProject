@@ -1,0 +1,21 @@
+(define (scoping sym funcObj)
+    (define (iter sym env level)
+        (cond
+            ((local? sym env) (if (= level 0) 
+				"bound" 
+				"free"))
+            ((null? (dot env __context)) "undefined")
+            (else (iter sym (dot env __context) (+ level 1)))
+            )
+        )
+    (iter sym funcObj 0)
+    )
+
+(define (main)
+    (define env this)
+    (define (iter expr)
+         (if (not (eof?)) (begin (eval expr env) (iter (readExpr))))
+         )
+    (setPort (open (getElement ScamArgs 1) 'read))
+    (iter (readExpr))
+    )
