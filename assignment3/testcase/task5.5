@@ -1,5 +1,5 @@
 (include "random.lib")
-(randomSeed 1076)
+(randomSeed 76)
 (define (rs) (cons-stream (randomRange -99 100) (rs)))
 (define s (rs))
 (define op (getElement (list + - *) (randomRange 0 3)))

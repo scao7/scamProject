@@ -1,61 +1,35 @@
-(define (node v pa ch)
-    (define val v)
-    (define parent pa)
-    (define child ch)
-
-    (define (set-parent p)
-        (set 'parent p)
-        )
-
-
-    (define (set-child c)
-        (set 'child c)
-        )
-
-
-    (define (set-val va)
-        (set 'val va)
-        )
-
-    
-    (define (get-parent)
-        parent
-        )
-
-    
-    (define (get-child)
-        child
-        )
-
-
-    (define (get-val)
-        val
-        )
-
-
+;constructor
+(define (node inValue inParent inChild)
+    (define val inValue)
+    (define parent inParent)
+    (define child inChild)
+    (define (set-parent p) (set 'parent p))
+    (define (set-child c) (set 'child c))
+    (define (set-val va) (set 'val va))
+    (define (get-parent) parent)
+    (define (get-child) child)
+    (define (get-val) val)
     this
-    )
+)
 
 
 (define (deque)
-    (define stuff nil)
+    (define queuelist nil)
     (define size 0)
     (define tail nil)
-
-
     (define (enqueueFront val)
         (define n (node val nil nil))
-        (if (null? stuff)
+        (if (null? queuelist)
             (begin
                 (set 'size 1)
-                (set 'stuff n)
+                (set 'queuelist n)
                 (set 'tail n)
                 )
             (begin
-                ((n'set-child) stuff)
-                ((stuff'set-parent) n)
-                (set 'stuff n)
-                (++ size)
+                ((n 'set-child) queuelist)
+                ((queuelist 'set-parent) n)
+                (set 'queuelist n)
+		(set! size (+ size 1))
                 )
             )
         val
@@ -64,17 +38,17 @@
 
     (define (enqueueBack val)
         (define n (node val nil nil))
-        (if (null? stuff)
+        (if (null? queuelist)
             (begin
                 (set 'size 1)
-                (set 'stuff n)
+                (set 'queuelist n)
                 (set 'tail n)
                 )
             (begin
-                ((n'set-parent) tail)
-                ((tail'set-child) n)
+                ((n 'set-parent) tail)
+                ((tail 'set-child) n)
                 (set 'tail n)
-                (++ size)
+		(set! size (+ size 1))
                 )
             )
         val
@@ -82,26 +56,26 @@
 
 
     (define (enqueueIndex ind val)
-        (define (e-iter src count in va)
+        (define (enqueIter src count in va)
             (if (= count in)
                 (begin
-                    (define c ((src'get-child)))
+                    (define c ((src 'get-child)))
                     (define n (node va src c))
-                    ((src'set-child) n)
+                    ((src 'set-child) n)
                     (if (= in size)
                         (set 'tail n)
-                        ((c'set-parent) n)
+                        ((c 'set-parent) n)
                         )
                     )
-                (e-iter ((src'get-child)) (+ count 1) in va)
+                (enqueIter ((src 'get-child)) (+ count 1) in va)
                 )
             )
 
         (if (= ind 0)
             (enqueueFront val)
             (begin
-                (e-iter stuff 1 ind val)
-                (++ size)
+                (enqueIter queuelist 1 ind val)
+		(set! size (+ size 1))
                 )
             )
         val
@@ -109,44 +83,44 @@
 
 
     (define (dequeueFront)
-        (define v ((stuff'get-val)))
-        (set 'stuff ((stuff'get-child)))
-        (-- size)
+        (define v ((queuelist 'get-val)))
+        (set 'queuelist ((queuelist 'get-child)))
+	(set! size (- size 1))
         (if (= size 0)
             (set 'tail nil)
-            ((stuff'set-parent) nil)
+            ((queuelist 'set-parent) nil)
             )
         v
         )
 
 
     (define (dequeueBack)
-        (define v ((tail'get-val)))
-        (set 'tail ((tail'get-parent)))
-        (-- size)
+        (define v ((tail 'get-val)))
+        (set 'tail ((tail 'get-parent)))
+	(set! size (- size 1))
         (if (= size 0)
-            (set 'stuff nil)
-            ((tail'set-child) nil)
+            (set 'queuelist nil)
+            ((tail 'set-child) nil)
             )
         v
         )
 
 
     (define (dequeueIndex ind)
-        (define (d-iter src ind count)
+        (define (displayIter src ind count)
             (if (= ind count)
                 (begin
-                    (define c ((src'get-child)))
-                    (define p ((src'get-parent)))
-                    (define v ((src'get-val)))
-                    ((c'set-parent) p)
+                    (define c ((src 'get-child)))
+                    (define p ((src 'get-parent)))
+                    (define v ((src 'get-val)))
+                    ((c 'set-parent) p)
                     (if (!= count 0)
-                        ((p'set-child) c)
-                        (set 'stuff c)
+                        ((p 'set-child) c)
+                        (set 'queuelist c)
                         )
                     v
                     )
-                (d-iter ((src'get-parent)) ind (- count 1))
+                (displayIter ((src 'get-parent)) ind (- count 1))
                 )
             )
         
@@ -154,8 +128,8 @@
         (if (= ind (- size 1))
             (dequeueBack)
             (begin
-                (define v (d-iter ((tail'get-parent)) ind (- size 2)))
-                (-- size)
+                (define v (displayIter ((tail 'get-parent)) ind (- size 2)))
+		(set! size (- size 1))
                 v
                 )
             )
@@ -163,14 +137,14 @@
 
     
     (define (display)
-        (define (d-iter src)
+        (define (displayIter src)
             (if (not (null? src))
                 (begin 
-                    (print ((src'get-val)))
-                    (if (not (null? ((src'get-child))))
+                    (print ((src 'get-val)))
+                    (if (not (null? ((src 'get-child))))
                         (begin 
                             (print ",")
-                            (d-iter ((src'get-child)))
+                            (displayIter ((src 'get-child)))
                             )
                         )
                     )
@@ -178,18 +152,18 @@
             )
 
         (print "[")
-        (d-iter stuff)
+        (displayIter queuelist)
         (print "]")
         )
 
 
     (define (peekFront)
-        ((stuff'get-val))
+        ((queuelist 'get-val))
         )
 
     
     (define (peekBack)
-        ((tail'get-val))
+        ((tail 'get-val))
         )
         
 

@@ -1,77 +1,61 @@
 (define (sdisplay n z)
     (define (iter x m)
-        (cond
-            ((= m 0) (print "..."))
-            (else
+        (if (= m 0)  
+                (print "...")
+            (begin
                 (print (stream-car x) ",")
-                (iter (stream-cdr x) (- m 1))
-                )
+                (iter (stream-cdr x) (- m 1)) 
             )
         )
-
+    )   
     (print "(")
     (iter z n)
     (print ")")
-    )
-
+)  
 
 (define (quad a b c step)
     (define (square x) (* x x))
     (define (get-f val) (+ (* a (square val)) (* b val) c))
-
-
     (define (stepper s)
         (cons-stream (+ (stream-car s) (real step)) (stepper (stream-cdr s)))
         )
-
-
     (define (f-stream s)
         (cons-stream (get-f (stream-car s)) (f-stream (stream-cdr s)))
         )
-
-
     (define x (cons-stream (real 0.0) (stepper x)))
     (define f (cons-stream (get-f (stream-car x)) (f-stream (stream-cdr x))))
-    )
+)
 
 
-(define (integrate s h)
-    (define (trap-area b1 b2)(* (/ (+ b1 b2) 2.0) h))
-
-
+(define (integrate s height)
+    (define (trapzoid top base)(* (/ (+ top base) 2.0) height))
     (define (integ-help st self)
-        (cons-stream (+ (stream-car self) (trap-area (stream-car st) (stream-car (stream-cdr st)))) (integ-help (stream-cdr st) (stream-cdr self)))
+        (cons-stream (+ (stream-car self) (trapzoid (stream-car st) (stream-car (stream-cdr st)))) (integ-help (stream-cdr st) (stream-cdr self)))
         )
-
     (define integ (cons-stream (real 0.0) (integ-help s integ)))
-    )
+)
 
 
 (define (derivate s step f0)
-    (define (undo integ b1)
-        (- (* (/ integ step) 2.0) b1)
-        )
-
-
-    (define (deriv s step b1)
+    (define (undo integ top)
+        (- (* (/ integ step) 2.0) top)
+     )
+    (define (deriv s step top)
         (let ((trap (- (stream-car (stream-cdr s)) (stream-car s))))
-            (define b2 (undo trap b1))
-            (cons-stream b2 (deriv (stream-cdr s) step b2))
+            (define base (undo trap top))
+            (cons-stream base (deriv (stream-cdr s) step base))
             )
         )
-
-
     (cons-stream (real f0) (deriv s step f0))
     )
 
-
-(define (same-stream? s t count thresh)
+(define (same-stream? s1 s2 n t)
     (cond
-        ((= count 0) #t)
-        ((<= (abs (- (stream-car s) (stream-car t))) thresh) (same-stream? (stream-cdr s) (stream-cdr t) (- count 1) thresh))
+        ((= n 0) #t)
+        ((<= (abs (- (stream-car s1) (stream-car s2))) t) (same-stream? (stream-cdr s1) (stream-cdr s2) (- n 1) t))
         (else #f)
         )
-    )
+)
 
 
 (define (main)

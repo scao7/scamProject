@@ -1,5 +1,5 @@
 (include "random.lib")
-(randomSeed 1086)
+(randomSeed 86)
 (define dq (deque))
 (define (upback dq n)
     (define value (randomRange 10 100))
@@ -29,5 +29,5 @@
     (print "[")
     (remove 0 'dequeueBack)
     )
-(upback dq 3008)
+(upback dq 3000)
 (frontback dq 20)

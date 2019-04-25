@@ -1,28 +1,26 @@
 (define (sdisplay n z)
     (define (iter x m)
-        (cond
-            ((= m 0) (print "..."))
-            (else
+        (if (= m 0)  
+                (print "...")
+            (begin
                 (print (stream-car x) ",")
-                (iter (stream-cdr x) (- m 1))
-                )
+                (iter (stream-cdr x) (- m 1)) 
             )
         )
-
+    )   
     (print "(")
     (iter z n)
     (print ")")
-    )
+    )   
 
-
-(define (merge-weighted s t weight)
+(define (merge s1 s2 weight)
     (cond
-        ((stream-null? s) t)
-        ((stream-null? t) s)
+        ((stream-null? s1) s2)
+        ((stream-null? s2) s1)
         (else
-            (if (<= (weight (stream-car s)) (weight (stream-car t)))
-                (cons-stream (stream-car s) (merge-weighted (stream-cdr s) t weight))
-                (cons-stream (stream-car t) (merge-weighted s (stream-cdr t) weight))
+            (if (<= (weight (stream-car s1)) (weight (stream-car s2)))
+                (cons-stream (stream-car s1) (merge (stream-cdr s1) s2 weight))
+                (cons-stream (stream-car s2) (merge s1 (stream-cdr s2) weight))
                 )
             )
         )
@@ -36,7 +34,6 @@
             (stream-map f (stream-cdr s))
             )
         )
-
 
     (define (add-streams s t)
         (cons-stream
@@ -53,7 +50,7 @@
     (define (w-pairs s t w)
         (cons-stream
             (list (stream-car s) (stream-car t))
-            (merge-weighted
+            (merge
                 (stream-map (lambda (x) (list (stream-car s) x)) (stream-cdr t))
                 (w-pairs (stream-cdr s) (stream-cdr t) w)
                 w

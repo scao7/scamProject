@@ -42,6 +42,7 @@ testall: test1 test2 \
 	test59 \
 	test60 \
 	test61 \
+	test62 \
 	test63 \
 	test64 \
 	test65 \
@@ -350,11 +351,11 @@ test61: task6.scm testcase/task6.5
 	diff result testcase/task6.5.expected
 	@echo ""
 
-#test62: task6.scm testcase/task6.6
-#	@echo "TEST #62"
-#	$(SCAM) -r task6.scm testcase/task6.6 > result
-#	diff result testcase/task6.6.expected
-#	@echo ""
+test62: task6.scm testcase/task6.6
+	@echo "TEST #62"
+	$(SCAM) -r task6.scm testcase/task6.6 > result
+	diff result testcase/task6.6.expected
+	@echo ""
 
 test63: task6.scm testcase/task6.7
 	@echo "TEST #63"

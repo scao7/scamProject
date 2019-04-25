@@ -1,14 +1,8 @@
 (include "queue.scm")
 (include "gates.scm")
 (include "nand.scm")
-
 (define the-agenda (make-agenda))
-
-
-(define (inverter x y)
-    (nand-gate x x y)
-    )
-
+(define (inverter x y) (nand-gate x x y))
 (define (and-gate x y z)
     (let ((a (make-wire)))
         (nand-gate x y a)

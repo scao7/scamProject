@@ -1,19 +1,17 @@
 (define (sdisplay n z)
     (define (iter x m)
-        (cond
-            ((= m 0) (print "..."))
-            (else
+        (if (= m 0)  
+                (print "...")
+            (begin
                 (print (stream-car x) ",")
-                (iter (stream-cdr x) (- m 1))
-                )
+                (iter (stream-cdr x) (- m 1)) 
             )
         )
-
+    )   
     (print "(")
     (iter z n)
     (print ")")
-    )
-
+    )   
 
 (define (mystery x)
     (define (add-streams s t)
@@ -23,11 +21,9 @@
             )
         )
 
-
     (define (stream-exp s)
         (cons-stream (^ x (stream-car s)) (stream-exp (stream-cdr s)))
         )
-
 
     (define (stream-mult s t)
         (cons-stream (* (stream-car s) (stream-car t)) (stream-mult (stream-cdr s) (stream-cdr t)))
@@ -38,11 +34,9 @@
         (cons-stream (* (stream-car s) ind (+ ind 1.0)) (even-fact (stream-cdr s) (+ ind 2.0)))
         )
 
-
     (define (div-streams s t)
         (cons-stream (/ (real (stream-car s)) (stream-car t)) (div-streams (stream-cdr s) (stream-cdr t)))
         )
-
 
     (define alt-ones (cons-stream 1.0 (cons-stream -1.0 alt-ones)))
     (define twos (cons-stream 2.0 twos))
@@ -59,11 +53,9 @@
         (cons-stream (+ (stream-car s) (stream-car acc)) (accum-stream (stream-cdr s) (stream-cdr acc)))
         )
     
-
     (define mys (mystery x))
     (define ps (cons-stream (stream-car mys) (accum-stream (stream-cdr mys) ps)))
     )
-
 
 (define (euler-trans s)
     (define (stream-ref s n)
@@ -72,11 +64,7 @@
             (stream-ref (stream-cdr s) (- n 1))
             )
         )
-
-
     (define (square x) (* x x))
-
-
     (let
         ((s0 (stream-ref s 0))
          (s1 (stream-ref s 1))
@@ -91,7 +79,6 @@
             )
         )
     )
-
 
 (define (acc-mystery x)
     (euler-trans (ps-mystery x))
